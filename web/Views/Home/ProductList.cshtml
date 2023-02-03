@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "ProductList";
+}
+
+@model List<web.Models.Product>
+@for (int i = 0; i < Model.Count; i++)
+{
+    <div class="prod_box">
+        <div class="top_prod_box"></div>
+        <div class="center_prod_box">
+            <div class="product_title">
+                <a href="details.html">@Model[i].Product_name</a>
+            </div>
+            <div class="product_img">
+                <a href=@Url.Action("Detail","Product", new { id=Model[i].Product_ID})>
+                    <img src="~/Content/images/@Model[i].Product_images" alt="image" />
+                </a>
+            </div>
+            <div class="prod_price"><span class="price">@Model[i].Product_price</span></div>
+        </div>
+        <div class="bottom_prod_box"></div>
+        <div class="prod_details_tab"><a class="prod_details" href="@Url.Action("Detail", "Product", new { id = Model[i].Product_ID})">Details</a></div>
+    </div>
+}
+

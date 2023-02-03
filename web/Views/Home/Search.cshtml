@@ -1,0 +1,57 @@
+﻿@using web.Models;
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+    string key = Request.QueryString["key"]; // sreach?key=1234 thì nó sẽ lấy key trên đường dẫn và lấy về giá trị 1234
+    List<Product> result = new List<Product>();
+
+}
+
+<h2>Search</h2>
+style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+@{
+    if (string.IsNullOrEmpty(key))
+    // Khi chạy đường dẫn Home/Search thay vì hiện lỗi thì sẽ hiển thị thông báo
+    {
+        <h3>Vui lòng nhập từ khóa</h3>
+    }
+    else
+    {
+        if (key == "")
+        {
+            <h3>Vui lòng nhập từ khóa</h3>
+        }
+        else
+        {
+            result = new Search().SearchByKey(key);
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Giá cả</th>
+                        <th>Giảm giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in result)
+                    {
+                        <tr>
+                            <td>@item.Product_name</td>
+                            <td><img src="~/Content/images/@item.Product_images" style="width:100px;height:100px;" /></td>
+                            <td>@item.Product_price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="@Url.Action("Index","Home")"><= GO HOME</a>
+        }
+    }
+
+}
+

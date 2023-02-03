@@ -1,0 +1,67 @@
+﻿@model web.Models.Cart
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+<h2>ShowCart</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá cả</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Items này chính là IEnumerable<CartItem> Items *@
+            @foreach (var item in Model.Item)
+            {
+
+                int total = Convert.ToDouble(item.shopping_product.ProductPrice * item.shopping_quantity);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.shopping_product.ProductName)
+                    </td>
+                    <td>
+                        <img src="~/Content/images/@item.shopping_product.Product_images" style="width:100px;height:100px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.shopping_product.ProductPrice)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_Quantity_Cart", "Cart"))
+                        {
+                            // id này cho ẩn  vì id này lấy ra để update
+                            <input type="hidden" value="@item.shopping_product.Product_id" name="ID_Product">
+                            <input type="number" value="@item.shopping_quantity" name="Quantity" style="width:30px" />
+                            <input type="submit" value="Update Quantity" />
+                        }
+                    </td>
+                    <td>
+                        Total:@total
+                    </td>
+                    <td>
+                        <a href="/Cart/RemoveCart/@item.shopping_product.Product_id" class="btn btn-success">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align:right">Sum Total: @Model.Total_Money()</td>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="@Url.Action("Index","Home")"><= Continue To Shopping</a>
+}

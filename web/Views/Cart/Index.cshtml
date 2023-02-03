@@ -1,0 +1,65 @@
+﻿@model IEnumerable<web.Models.Cart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSP)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ThanhTien)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+
+            <td>
+                <Form action=@Url.Action("Update_Quantity_Cart","Cart") method="get">
+                    <input type="hidden" name="Id" value=@item.MaSP>
+                    <input type="hidden" name="name" value=@item.Ten>
+                    <input type="number" name="soluong" value=@item.SoLuong>
+                    <button type="submit">Update</button>
+                </Form>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+
+            <td>
+
+                <a href=@Url.Action("RemoveCart", "Cart", new { Id = item.MaSP })> Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<a href=@Url.Action("Thanhtoan","Cart") class="btn btn-success"> Thanh Toán</a>

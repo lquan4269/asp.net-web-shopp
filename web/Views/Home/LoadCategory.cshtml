@@ -1,0 +1,21 @@
+﻿@model List<web.Models.Category>
+
+<ul class="left_menu">
+        @foreach (var cat in Model) {
+            <li class="odd"><a href=@Url.Action("ProductList","Product", new { catid =cat.ID})>@cat.Name</a></li>
+        }
+</ul>
+@*<ul class="left_menu">
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Processors</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motherboards</a></li>
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Desktops</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Laptops &amp; Notebooks</a></li>
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Processors</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motherboards</a></li>
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Processors</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motherboards</a></li>
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Desktops</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Laptops &amp; Notebooks</a></li>
+    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Processors</a></li>
+    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motherboards</a></li>
+</ul>*@

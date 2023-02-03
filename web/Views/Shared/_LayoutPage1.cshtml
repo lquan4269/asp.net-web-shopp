@@ -1,0 +1,125 @@
+﻿@using web.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electronix Store</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="~/style.css" />
+    <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="iecss.css" />
+    <![endif]-->
+    <script type="text/javascript" src="~/Content/js/boxOver.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        <div class="top_bar">
+            <div class="top_search">
+                <div class="search_text"><a href="http://all-free-download.com/free-website-templates/">Advanced Search</a></div>
+                <input type="text" class="search_input" name="search" />
+                <input type="image" src="~/Content/images/search.gif" class="search_bt" />
+            </div>
+            <div class="languages">
+                <div class="lang_text">Languages:</div>
+                <a href="http://all-free-download.com/free-website-templates/" class="lang"><img src="~/Content/images/en.gif" alt="" border="0" /></a> <a href="http://all-free-download.com/free-website-templates/" class="lang"><img src="~/Content/images/de.gif" alt="" border="0" /></a>
+            </div>
+        </div>
+
+        @RenderSection("Header",false) @*false la khong bat buoc/ true la bat buoc*@
+
+        <div id="main_content">
+            <div id="menu_tab">
+                <div class="left_menu_corner"></div>
+                <ul class="menu">
+
+                    <li><a href="@Url.Action("Index","Home")" class="nav1"> Home</a></li>
+                    <li class="divider"></li>
+                    <li><a href="" @Url.Action("Index", "Product") "" class="nav2">Products</a></li>
+                    @if (Session["user"] != null)
+                    {
+                        <li>Chào Bạn @Session["user"]<a href="@Url.Action("Logout", "User")">Đăng Xuất</a></li>
+                    }
+                    else
+                    {
+                            <li><a href="@Url.Action("Login","User")">Đăng nhập</a></li>
+                    }
+
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("Register","User")" class="nav4">Đăng ký</a></li>
+                    <li class="divider"></li>
+                    <li><a href="http://all-free-download.com/free-website-templates/" class="nav5">Shipping</a></li>
+                    <li class="divider"></li>
+                    <li><a href="contact.html" class="nav6">Contact Us</a></li>
+                    <li class="divider"></li>
+                    <li class="currencies">
+                        Currencies
+                        <select>
+                            <option>US Dollar</option>
+                            <option>Euro</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="right_menu_corner"></div>
+            </div>
+            <!-- end of menu tab -->
+            <div class="left_content">
+                <div class="title_box">Categories</div>
+
+                @Html.Action("LoadCategory", "Home")
+
+                <div class="title_box">Special Products</div>
+                <div class="border_box">
+                    <div class="product_title"><a href="details.html">Motorola 156 MX-VL</a></div>
+                    <div class="product_img"><a href="details.html"><img src="~/Content/images/laptop.png" alt="" border="0" /></a></div>
+                    <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                </div>
+                <div class="title_box">Newsletter</div>
+                <div class="border_box">
+                    <input type="text" name="newsletter" class="newsletter_input" value="your email" />
+                    <a href="http://all-free-download.com/free-website-templates/" class="join">join</a>
+                </div>
+                <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img src="~/Content/images/bann2.jpg" alt="" border="0" /></a> </div>
+            </div>
+            <!-- end of left content -->
+            <div class="center_content">
+                @RenderBody()
+            </div>
+            <!-- end of center content -->
+            <div class="right_content">
+                <div class="shopping_cart">
+                    <div class="cart_title">Shopping cart</div>
+                    <div class="cart_details">
+                        3 items <br />
+                        <span class="border_cart"></span> Total: <span class="price">350$</span>
+                    </div>
+                    <div class="cart_icon"><a href="http://all-free-download.com/free-website-templates/" title="header=[Checkout] body=[&nbsp;] fade=[on]"><img src="~/Content/images/shoppingcart.png" alt="" width="48" height="48" border="0" /></a></div>
+                </div>
+                <div class="title_box">What's new</div>
+                <div class="border_box">
+                    <div class="product_title"><a href="details.html">Motorola 156 MX-VL</a></div>
+                    <div class="product_img"><a href="details.html"><img src="~/Content/images/p2.gif" alt="" border="0" /></a></div>
+                    <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                </div>
+                <div class="title_box">Manufacturers</div>
+                <ul class="left_menu">
+                    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Sony</a></li>
+                    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Samsung</a></li>
+                    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Daewoo</a></li>
+                    <li class="even"><a href="http://all-free-download.com/free-website-templates/">LG</a></li>
+                    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Fujitsu Siemens</a></li>
+                    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motorola</a></li>
+                    <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Phillips</a></li>
+                    <li class="even"><a href="http://all-free-download.com/free-website-templates/">Beko</a></li>
+                </ul>
+                <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img src="~/Content/images/bann1.jpg" alt="" border="0" /></a> </div>
+            </div>
+            <!-- end of right content -->
+        </div>
+        <!-- end of main content -->
+    </div>
+    <!-- end of main_container -->
+    <div </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("script", required: false)
+</body>
+</html>
